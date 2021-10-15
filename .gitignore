@@ -5,7 +5,8 @@
 !lib.a
 
 # only ignore the TODO file in the current directory, not subdir/TODO
-/TODO
+/__pycache__
+/.ipynb_checkpoints
 
 # ignore all files in any directory named build
 build/
