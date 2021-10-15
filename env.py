@@ -313,13 +313,13 @@ class Agent(Gridworld):
         Print the Value for each State
         """
         val = self.get_v().copy().reshape((self.get_dim(), self.get_dim()))
-        self.plot_state_matrix(30, val)
+        self.plot_state_matrix(20, val)
 
     def plot_state_matrix(self, fs, matrix, add_data=None):
         """
         Plot Colored State Matrix
         """
-        fig = plt.figure(figsize=(16, 16))
+        fig = plt.figure(figsize=(8, 8))
         ax = fig.add_subplot(111)
         if add_data is None:
             data = matrix
@@ -330,7 +330,7 @@ class Agent(Gridworld):
 
             if (i, j) in self.get_blocked_grids():
                 f = 'X'
-                fs = 40
+                fs = 20
             elif isinstance(z, np.str_):
                 f = str(z)
             else:
@@ -396,7 +396,7 @@ class Agent(Gridworld):
         """
         policy = self.get_policy().copy().reshape((self.get_dim(), self.get_dim()))
         v = self.get_v().copy().reshape((self.get_dim(), self.get_dim()))
-        self.plot_state_matrix(40, v, policy)
+        self.plot_state_matrix(20, v, policy)
 
     def print_optimaL_set_directions(self):
         """
@@ -423,7 +423,7 @@ class Agent(Gridworld):
         """
         Plot Optimal Direction Matrix
         """
-        fig = plt.figure(figsize=(16, 16))
+        fig = plt.figure(figsize=(8, 8))
         ax = fig.add_subplot(111)
         data = np.empty((self.get_dim(), self.get_dim())) * np.nan
         cax = ax.matshow(data, cmap='binary')
@@ -432,7 +432,7 @@ class Agent(Gridworld):
         while curr_grid != self.get_terminal_grid():
             index = self.get_states().index(curr_grid)
             action = self.get_policy()[index]
-            ax.text(curr_grid[1] + 0.5, curr_grid[0] + 0.5, action, color='red', ha='center', va='center', fontsize=40,
+            ax.text(curr_grid[1] + 0.5, curr_grid[0] + 0.5, action, color='red', ha='center', va='center', fontsize=20,
                     bbox=dict(boxstyle='round', facecolor='white', edgecolor='r'))
 
             if action == u'\u2191':
@@ -445,10 +445,10 @@ class Agent(Gridworld):
                 curr_grid = (curr_grid[0], curr_grid[1] + 1)
 
         for s in self.get_blocked_grids():
-            ax.text(s[1] + 0.5, s[0] + 0.5, 'X', ha='center', va='center', fontsize=40,
+            ax.text(s[1] + 0.5, s[0] + 0.5, 'X', ha='center', va='center', fontsize=20,
                     bbox=dict(boxstyle='round', facecolor='white', edgecolor='k'))
         ax.text(self.get_terminal_grid()[1] + 0.5, self.get_terminal_grid()[0] + 0.5, 'T', color='blue', ha='center',
-                va='center', fontsize=40,
+                va='center', fontsize=20,
                 bbox=dict(boxstyle='round', facecolor='white', edgecolor='blue'))
         extent = (0, data.shape[1], data.shape[0], 0)
         ax.grid(color='k', lw=2)
